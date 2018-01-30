@@ -11,7 +11,7 @@ class words_test():
     def __init__(self):
         self.mysql_host='localhost'
         self.mysql_user='root'
-        self.mysql_password='li154774'
+        self.mysql_password='******'
         self.db='english'
     def random_select(self):
         conn=pymysql.connect(host=self.mysql_host,user=self.mysql_user,

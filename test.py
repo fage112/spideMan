@@ -3,18 +3,21 @@
 import pymysql
 import os
 def cls():
-    os.system('cls')
+    if os.name=="nt":
+        os.system('cls')
+    else:
+        os.system('clear')
 class words_test():
     def __init__(self):
         self.mysql_host='localhost'
         self.mysql_user='root'
-        self.mysql_password='*******'
+        self.mysql_password='li154774'
         self.db='english'
     def random_select(self):
         conn=pymysql.connect(host=self.mysql_host,user=self.mysql_user,
                              password=self.mysql_password,db=self.db,charset='utf8')
         with conn.cursor() as cursor:
-            sql='SELECT word,mean FROM computer ORDER BY RAND() LIMIT 5;'
+            sql='SELECT word,mean FROM cet6 ORDER BY RAND() LIMIT 5;'
             cursor.execute(sql)
             result=cursor.fetchall()
             conn.close()
@@ -27,12 +30,14 @@ class words_test():
             print(words_list[i][0])
             print(words_list[i][1])
             input('记住单词后请输入按回车键:')
-            cls()
             while True:
+                cls()
+                print(words_list[i][1])
                 word = input('请输入单词:')
                 if word.lower()==words_list[i][0].lower():
                     break
                 elif word.lower()=='replay':
+                    cls()
                     print(words_list[i][0])
                     print(words_list[i][1])
                     input('记住单词后请输入按回车键:')
